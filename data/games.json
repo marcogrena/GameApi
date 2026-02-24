@@ -15,9 +15,26 @@
         "joinedAt": "2026-02-24T16:09:03.438Z"
       }
     ],
-    "moves": [],
+    "moves": [
+      {
+        "id": "22072b02-9845-4d6d-9a7f-b84bce2b3416",
+        "playerId": "9a523b52-1d93-4cdf-82d5-b8d9dbc6d23b",
+        "data": {
+          "mossa": "e4"
+        },
+        "timestamp": "2026-02-24T16:37:15.462Z"
+      },
+      {
+        "id": "a53ca1e9-771f-42d8-a671-c55e0bdae2f5",
+        "playerId": "f74cd081-0bca-4624-9ddb-8aff13d14ea4",
+        "data": {
+          "mossa": "e5"
+        },
+        "timestamp": "2026-02-24T16:37:50.601Z"
+      }
+    ],
     "status": "active",
     "createdAt": "2026-02-24T16:05:42.329Z",
-    "updatedAt": "2026-02-24T16:09:03.438Z"
+    "updatedAt": "2026-02-24T16:37:50.601Z"
   }
 ]

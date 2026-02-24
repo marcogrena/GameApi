@@ -476,10 +476,11 @@ router.post('/:gameId/moves', (req, res) => {
       return res.status(404).json({ error: 'Game not found' });
     }
 
-    // Verify that the authenticated user is a player in the game
+    // Verify that the authenticated user is a player in the game or the game owner
     const currentUserIsPlayer = game.players.some(p => p.id === req.user.id);
-    if (!currentUserIsPlayer) {
-      return res.status(403).json({ error: 'Access denied: Only players in the game can post moves' });
+    const currentUserIsOwner = game.ownerId === req.user.id;
+    if (!currentUserIsPlayer && !currentUserIsOwner) {
+      return res.status(403).json({ error: 'Access denied: Only players and the game owner can post moves' });
     }
 
     const { playerId, data } = req.body;
@@ -517,10 +518,11 @@ router.get('/:gameId/moves', (req, res) => {
       return res.status(404).json({ error: 'Game not found' });
     }
 
-    // Verify that the authenticated user is a player in the game
+    // Verify that the authenticated user is a player in the game or the game owner
     const currentUserIsPlayer = game.players.some(p => p.id === req.user.id);
-    if (!currentUserIsPlayer) {
-      return res.status(403).json({ error: 'Access denied: Only players in the game can view moves' });
+    const currentUserIsOwner = game.ownerId === req.user.id;
+    if (!currentUserIsPlayer && !currentUserIsOwner) {
+      return res.status(403).json({ error: 'Access denied: Only players and the game owner can view moves' });
     }
 
     const moves = getGameMoves(req.params.gameId);
