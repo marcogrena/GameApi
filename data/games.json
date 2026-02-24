@@ -36,5 +36,15 @@
     "status": "active",
     "createdAt": "2026-02-24T16:05:42.329Z",
     "updatedAt": "2026-02-24T16:37:50.601Z"
+  },
+  {
+    "id": "18a1751e-9a7f-48ed-b6fb-3d28f70167ae",
+    "name": "Briscola chiamata",
+    "ownerId": "22b4e0d5-cb03-48b6-b0ae-204fb26076cb",
+    "players": [],
+    "moves": [],
+    "status": "active",
+    "createdAt": "2026-02-24T16:41:33.624Z",
+    "updatedAt": "2026-02-24T16:41:33.624Z"
   }
 ]

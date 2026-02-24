@@ -2,11 +2,13 @@ import express from 'express';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import cors from 'cors';
+import http from 'http';
 import swaggerUi from 'swagger-ui-express';
 import swaggerSpec from './swagger.js';
 import authRoutes from './routes/auth.js';
 import gameRoutes from './routes/games.js';
 import { apiKeyAuth } from './middleware/auth.js';
+import { setupWebSocket } from './websocket.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -49,8 +51,13 @@ app.use((req, res) => {
   res.status(404).json({ error: 'Route not found' });
 });
 
-app.listen(PORT, () => {
+// Create HTTP server and attach WebSocket server
+const server = http.createServer(app);
+setupWebSocket(server);
+
+server.listen(PORT, () => {
   console.log(`Game API server running on port ${PORT}`);
   console.log(`API Documentation: http://localhost:${PORT}/api-docs`);
+  console.log(`WebSocket endpoint: ws://localhost:${PORT}`);
   console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
 });

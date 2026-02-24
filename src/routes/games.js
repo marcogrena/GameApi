@@ -11,8 +11,7 @@ import {
   addMoveToGame,
   getGameMoves
 } from '../db/database.js';
-
-const router = express.Router();
+import { broadcastToGame } from '../websocket.js';
 
 /**
  * @swagger
@@ -319,6 +318,14 @@ router.post('/:gameId/players', (req, res) => {
     }
 
     const player = addPlayerToGame(req.params.gameId, name.trim());
+    
+    // Broadcast player joined event to all connected players
+    broadcastToGame(req.params.gameId, {
+      type: 'player-joined',
+      gameId: req.params.gameId,
+      player
+    });
+    
     res.status(201).json({
       message: 'Player added successfully',
       player
@@ -399,6 +406,13 @@ router.delete('/:gameId/players/:playerId', (req, res) => {
     if (!result) {
       return res.status(404).json({ error: 'Player not found' });
     }
+
+    // Broadcast player removed event to all connected players
+    broadcastToGame(req.params.gameId, {
+      type: 'player-removed',
+      gameId: req.params.gameId,
+      playerId: req.params.playerId
+    });
 
     res.json({ message: 'Player removed successfully' });
   } catch (error) {
@@ -500,6 +514,15 @@ router.post('/:gameId/moves', (req, res) => {
     }
 
     const move = addMoveToGame(req.params.gameId, playerId, data);
+    
+    // Broadcast move to all connected players
+    broadcastToGame(req.params.gameId, {
+      type: 'move',
+      gameId: req.params.gameId,
+      move,
+      playerName: player.name
+    });
+    
     res.status(201).json({
       message: 'Move added successfully',
       move
