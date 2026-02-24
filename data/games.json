@@ -1,0 +1,23 @@
+[
+  {
+    "id": "b4585647-e1dc-49e8-a2d3-dc3f46f76f21",
+    "name": "Chess Game 1",
+    "ownerId": "de8bcf93-1025-4892-bd26-57bacb92b71f",
+    "players": [
+      {
+        "id": "f74cd081-0bca-4624-9ddb-8aff13d14ea4",
+        "name": "pippo",
+        "joinedAt": "2026-02-24T16:08:46.309Z"
+      },
+      {
+        "id": "9a523b52-1d93-4cdf-82d5-b8d9dbc6d23b",
+        "name": "pippo",
+        "joinedAt": "2026-02-24T16:09:03.438Z"
+      }
+    ],
+    "moves": [],
+    "status": "active",
+    "createdAt": "2026-02-24T16:05:42.329Z",
+    "updatedAt": "2026-02-24T16:09:03.438Z"
+  }
+]
