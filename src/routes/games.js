@@ -13,6 +13,8 @@ import {
 } from '../db/database.js';
 import { broadcastToGame } from '../websocket.js';
 
+const router = express.Router();
+
 /**
  * @swagger
  * /games:
